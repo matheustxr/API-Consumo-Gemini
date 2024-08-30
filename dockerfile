@@ -2,13 +2,17 @@ FROM node:18-alpine
 
 WORKDIR /app
 
+# Copiar package.json e package-lock.json
 COPY package*.json ./
-RUN npm install
 
+# Instalar todas as dependências (produção e desenvolvimento)
+RUN npm install --only=production
+
+# Copiar todo o código da aplicação
 COPY . .
 
-RUN npm install typescript --save-dev
-
+# Executar o build do TypeScript
 RUN npm run build
 
-CMD ["node", "dist/index.js"]
+# Definir o comando de início da aplicação
+CMD ["node", "dist/server.js"]
