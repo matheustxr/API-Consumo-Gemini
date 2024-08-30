@@ -1,0 +1,26 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Customer {
+  id       Int       @id @default(autoincrement())
+  code     String    @unique
+  readings Reading[]
+}
+
+model Reading {
+  id              Int      @id @default(autoincrement())
+  imageUrl        String
+  measure         Float
+  measureType     String
+  confirmed       Boolean  @default(false)
+  customerId      Int
+  customer        Customer @relation(fields: [customerId], references: [id])
+  createdAt       DateTime @default(now())
+  measureDatetime DateTime
+}

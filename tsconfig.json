@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+	  "target": "ES6",
+	  "module": "commonjs",
+	  "strict": true,
+	  "esModuleInterop": true,
+	  "skipLibCheck": true,
+	  "forceConsistentCasingInFileNames": true,
+	  "outDir": "./dist"
+	},
+	"include": ["src/**/*.ts", "src/tests/listReading.test.c#", "src/tests/uploadoReading.test.c#"],
+	"exclude": ["node_modules"]
+}
